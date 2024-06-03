@@ -1,0 +1,24 @@
+{
+  "name": "@iiot2k/ads1115",
+  "bugs": "https://github.com/iiot2k/ads1115/issues",
+  "description": "ads1115 analog to digital converter library",
+  "version": "2.1.1",
+  "license": "Apache-2.0",
+  "private": false,
+  "author": {
+    "name": "Derya Y.",
+    "email": "iiot2k@gmail.com"
+  },
+
+  "main": "ads1115.js",
+
+  "keywords": ["iot", "iiot2k", "raspberry pi", "rpi", 
+    "ads1115", "adc", "analog to digital converter"
+  ],
+
+  "cpu" : ["arm","arm64"],
+  "os": ["linux"],
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}
