@@ -4,10 +4,13 @@
 
 ads1115 analog to digital converter library
 
-<a href="https://www.buymeacoffee.com/iiot2ka" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-red.png" height="41" width="174"></a><br>
-Developing software is a hard job. Thanks for the coffee !! 😁
+<a href="https://www.buymeacoffee.com/iiot2ka" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-blue.png" height="41" width="174"></a><br>
+If you like my work and find it helpful, please support me.
 
 ## Installation
+This library works only on Raspberry Pi with 64bit OS.<br>
+*32bit OS is no longer supported.*<br>
+
 ```
 npm install @iiot2k/ads1115
 ```
@@ -35,15 +38,16 @@ or add in your ```package.json```:
 - I2C Interface with four pin-selectable addresses.
 
 ## Usage
-- This library works on Raspberry Pi with 32bit or 64bit OS.
 - The output value is mV or adc raw data.
 - Enable I2C with raspi-config.
 - In this case i2c-1 is enabled (port=1).
 - If you use i2c-0 port add<br>
-  **dtparam=i2c_vc=on**<br>
-  to /boot/config.txt,<br>
+  ```dtparam=i2c_vc=on```<br>
+  to *config.txt*,<br>
   then Pin27=SDA, Pin28=SCK.<br>
-- For other ports add this to /boot/config.txt.
+- For other ports add this to *config.txt*.
+- The default i2c speed is 100kHz, to speed up add/change this line in *config.txt*:<br>
+```dtparam=i2c_arm=on,i2c_arm_baudrate=400000```
 
 ## Address Pin Connection
 
@@ -58,68 +62,12 @@ or add in your ```package.json```:
 Node.js API functions are explained in document **API.md**<br>
 Node.js examples are on **examples** folder.<br>
 
-```javascript
-// example reads single adc input
-"use strict";
-
-const ads1115 = require("@iiot2k/ads1115");
-
-ads1115.read(
-    1, // i2c-1
-    ads1115.ADR_48, // address 0x48
-    ads1115.MUX_I0_GND, // AIN0 - GND
-    ads1115.GAIN_4096, // 4096 mV
-    ads1115.RATE_128, // 128 SPS
-    false, // no rawdata
-    function(data) {
-        if (data === undefined)
-            console.log(ads1115.error_text());
-        else
-            console.log(data, "mV");
-    });
-```
-
 ## C++ API
 This library uses C++ addon modules as interface to hardware.<br>
 Therefore, there is also a C++ interface to the drivers.<br>
-Unfortunately the C++ addon modules are not open source.<br>
-I provide the C++ static link libraries.<br>
-But if you are interested in the sources, I can send them to you.<br>
-Please send me an email with your name to iiot2k@gmail.com <br>
-I can only provide limited support for the C++ addon modules sources.<br>
 
-I have shown some C++ examples in the **cpp** directory and on [GitHub](https://github.com/iiot2k/ads1115/tree/main/cpp)📌<br>
+Some C++ examples are in the **cpp** directory.<br>
 The C++ API functions are described in the header file **ads1115_lib.h**
 
-```C++
-// example reads single adc input
-
-#include <stdio.h>
-
-#include "ads1115_lib.h"
-
-#define PORT 1 // i2c-1
-
-int main()
-{
-    double value;
-
-    bool ret = ads1115::read(
-        PORT,
-        ads1115::ADR_48, // address 0x48
-        ads1115::MUX_I0_GND, // AIN0 - GND
-        ads1115::GAIN_4096, // 4096 mV
-        ads1115::RATE_128, // 128 SPS
-        false, // no rawdata
-        value);
-
-    if (ret)
-        printf("%.0fmV\n", value);
-    else
-        printf("%s\n", ads1115::error_text());
-
-    return 0;
-}
-```
 
 

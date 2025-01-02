@@ -1,5 +1,5 @@
 /**
- * Copyright 2024 Derya Y. (iiot2k@gmail.com).
+ * Copyright 2025 Derya Y. (iiot2k@gmail.com).
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use node file except in compliance with the License.
@@ -20,6 +20,4 @@
 if (process.platform === 'linux') {
     if (process.arch === "arm64")
         module.exports = require("./ads1115_arm64.node");
-    else if (process.arch === "arm")
-        module.exports = require("./ads1115_arm32.node");
 }

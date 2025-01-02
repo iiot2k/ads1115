@@ -11,7 +11,7 @@
 - bugfix, documents
 
 2.0.10
-- Add Buy Me a coffe button
+- Add Buy Me a coffee button
 - Copy files to github
 - Add bugs in package.json
 
@@ -22,9 +22,12 @@
 - Adapts examples and API documents
 - Add C++ libraries and examples on github
 
-2.1.1
+3.0.0
+- End of support for 32bit
+- Use of c++17 compiler
+- Add version function
+- Update for actual node.js
+- Optimize driver
+- Extend thread safe in functions
 - Add scale functions
-- Add cancel convert adc function
-- Add set_timeout and set_interval to C++ library
-- Add more C++ examples
-- Add Makefile for C++
+- remove promise functions
